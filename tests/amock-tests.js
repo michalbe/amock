@@ -1,7 +1,14 @@
 'use strict';
 
 var assert = require('assert');
-//var amock = require('../');
+var amock = require('../');
 
 // test 1
-assert(true);
+amock('cities', {
+  id: 'number:0-',
+  name: 'words:1'
+});
+
+// simple test;
+var result = amock.get(5);
+assert.equal(result, 5);
