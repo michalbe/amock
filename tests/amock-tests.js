@@ -15,3 +15,5 @@ assert.equal(result, 5);
 assert.equal(typeof result[0], 'object');
 assert.equal(typeof result[0].id, 'number');
 assert(result[0].id >= 0);
+assert.equal(typeof result[0].name, 'string');
+assert.equal(result[0].name.split(' ').length, 1);
