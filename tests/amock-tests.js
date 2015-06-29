@@ -4,9 +4,11 @@ var assert = require('assert');
 var amock = require('../');
 
 // test 1
-amock('cities', {
+amock('users', {
   id: 'number:0-',
-  name: 'words:1'
+  login: 'words:1',
+  name: 'names:2',
+  description: 'sentences:5'
 });
 
 // simple test;
@@ -16,4 +18,4 @@ assert.equal(typeof result[0], 'object');
 assert.equal(typeof result[0].id, 'number');
 assert(result[0].id >= 0);
 assert.equal(typeof result[0].name, 'string');
-assert.equal(result[0].name.split(' ').length, 1);
+assert.equal(result[0].name.split(' ').length, 2);
