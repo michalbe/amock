@@ -12,3 +12,6 @@ amock('cities', {
 // simple test;
 var result = amock.get(5);
 assert.equal(result, 5);
+assert.equal(typeof result[0], 'object');
+assert.equal(typeof result[0].id, 'number');
+assert(result[0].id >= 0);
