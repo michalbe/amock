@@ -1,9 +1,9 @@
 'use strict';
 
-// number
+// +number
 // +random number
 // words
-// names
+// +names
 // sentences
 // image
 //
@@ -33,30 +33,35 @@ module.exports = function(){
     return title.toLowerCase();
   };
 
-  var getName = function() {
+  var generateName = function() {
     var title = getString();
     return title.charAt(0).toUpperCase() + title.slice(1);
   };
 
-  var getEmail = function(){
-    return getString() + '@' + getString() + '.com';
-  };
-
-  var getPhone = function(){
-    var output = '+';
-    for (var i=0; i<10; i++) {
-      output += ~~(Math.random()*9);
+  var getName = function(length) {
+    var output = [];
+    for (var i=0; i<length; i++){
+      output.push(generateName());
     }
 
-    return output;
+    return output.join( );
   };
+  // 
+  // var getEmail = function(){
+  //   return getString() + '@' + getString() + '.com';
+  // };
+  //
+  // var getPhone = function(){
+  //   var output = '+';
+  //   for (var i=0; i<10; i++) {
+  //     output += ~~(Math.random()*9);
+  //   }
+  //
+  //   return output;
+  // };
 
   return {
     randomNumber: getRandomNumber,
-    getEmail: getEmail,
-    getName: function(){
-      return getName() + ' ' + getName();
-    },
-    getPhone: getPhone
+    getName: getName
   };
 }();
