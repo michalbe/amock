@@ -2,7 +2,7 @@
 
 // +number
 // +random number
-// words
+// +words
 // +names
 // sentences
 // image
@@ -24,17 +24,18 @@ module.exports = function(){
     return output.join(separator).trim();
   };
 
-  var getString = function(){
-    var title = getGivenNumberOfElements(' ', 1).replace(/[^a-zA-Z ]/g, '');
-    if (title.length < 4) {
-      title = getName();
+  var getWords = function(length){
+    var word = getGivenNumberOfElements(' ', length)
+      .replace(/[^a-zA-Z ]/g, '');
+    if (word.length < 4) {
+      word = getWords(1);
     }
 
-    return title.toLowerCase();
+    return word.toLowerCase();
   };
 
   var generateName = function() {
-    var title = getString();
+    var title = getWords(1);
     return title.charAt(0).toUpperCase() + title.slice(1);
   };
 
@@ -46,7 +47,7 @@ module.exports = function(){
 
     return output.join( );
   };
-  // 
+  //
   // var getEmail = function(){
   //   return getString() + '@' + getString() + '.com';
   // };
@@ -62,6 +63,7 @@ module.exports = function(){
 
   return {
     randomNumber: getRandomNumber,
-    getName: getName
+    words: getWords,
+    name: getName
   };
 }();
