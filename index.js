@@ -16,7 +16,7 @@ module.exports = (function(){
   var init = function(name, schema){
     var parsedSchema = {};
     for (var key in schema) {
-      parsedSchema = parseElement(schema[key]);
+      parsedSchema[key] = parseElement(schema[key]);
     }
 
     mocks[name] = parsedSchema;
@@ -55,17 +55,32 @@ module.exports = (function(){
       quantity = quantity || 20;
     }
 
+    var output = [];
+    var singleObject = {};
+    var schema = mocks[name];
+
+    while(quantity--) {
+      singleObject = {};
+      for (var key in schema) {
+        singleObject[key] = schema[key].fn(schema[key].args);
+      }
+      output.push(singleObject);
+    }
+
+    return JSON.stringify(output, null, 2);
   };
 
-  return init;
+//  return init;
   //
-  // var e = {
-  //   id: 'id',
-  //   age: 'random-number:10-20',
-  //   login: 'words:1',
-  //   name: 'names:2',
-  //   description: 'sentences:5'
-  // };
+  var e = {
+    id: 'id',
+    age: 'random-number:10-20',
+    login: 'words:1',
+    name: 'names:2',
+    description: 'sentences:2'
+  };
 
+init('clients', e);
+console.log(init.get());
 
 })();
