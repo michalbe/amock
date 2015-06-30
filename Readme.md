@@ -31,3 +31,9 @@ Supported data types:
  'random-number' // random number, range as an argument (min-max)
  'image' // link to the random image, resolution as an argument (width/height)
 ```
+
+## Usage
+```bash
+npm i amock -g
+amock path-to-file-with-mock-description.json [number of elements, optional]
+```
