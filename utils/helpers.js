@@ -10,9 +10,10 @@
 module.exports = function(){
   var descriptions = require('./descriptions')();
 
-  var getRandomNumber = function(min, max) {
-    min = min || 0;
-    max = max || 10;
+  var getRandomNumber = function(range) {
+    range = range.split('-');
+    var min = range[0] || 0;
+    var max = range[1] || 10;
     return min + ~~(Math.random()*(max-min+1));
   };
 
@@ -62,7 +63,7 @@ module.exports = function(){
   };
 
   return {
-    randomNumber: getRandomNumber,
+    'random-number': getRandomNumber,
     words: getWords,
     names: getName,
     sentences: getSentences
