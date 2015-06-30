@@ -4,7 +4,7 @@
 var fs = require('fs');
 var amock = require('./..');
 var file = process.argv[2];
-var qty = process.argv[3] || 20;
+var qty = parseInt(process.argv[3], 10) || 20;
 
 if (file) {
   fs.readFile(file, 'utf8', function(err, data){
@@ -14,7 +14,7 @@ if (file) {
     }
 
     amock(file, JSON.parse(data));
-    console.log(amock.get(qty));
+    console.log(amock.getJSON(qty));
   });
 } else {
   console.log('Nope. I need at least the file name...');

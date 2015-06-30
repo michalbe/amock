@@ -55,6 +55,7 @@ module.exports = (function(){
       quantity = quantity || 20;
     }
 
+
     var output = [];
     var singleObject = {};
     var schema = mocks[name];
@@ -70,7 +71,7 @@ module.exports = (function(){
     return output;
   };
 
-  init.getParsed = function(name, quantity) {
+  init.getJSON = function(name, quantity) {
     return JSON.stringify(init.get(name, quantity), null, 2);
   };
 
