@@ -1,0 +1,7 @@
+{
+  "id": "id",
+  "name": "words:1",
+  "description": "sentences:1",
+  "price": "random-number:9-100",
+  "image": "image:500/500"
+}
