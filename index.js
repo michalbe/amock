@@ -67,20 +67,11 @@ module.exports = (function(){
       output.push(singleObject);
     }
 
-    return JSON.stringify(output, null, 2);
+    return output;
   };
 
-//  return init;
-  //
-  var e = {
-    id: 'id',
-    age: 'random-number:10-20',
-    login: 'words:1',
-    name: 'names:2',
-    description: 'sentences:2'
+  init.getParsed = function(name, quantity) {
+    return JSON.stringify(init.get(name, quantity), null, 2);
   };
-
-init('clients', e);
-console.log(init.get());
-
+  return init;
 })();
