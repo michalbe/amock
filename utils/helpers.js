@@ -11,6 +11,8 @@ module.exports = function(){
   var descriptions = require('./descriptions')();
 
   var getRandomNumber = function(min, max) {
+    min = min || 0;
+    max = max || 10;
     return min + ~~(Math.random()*(max-min+1));
   };
 
@@ -24,10 +26,20 @@ module.exports = function(){
     return output.join(separator).trim();
   };
 
+  var getSentences = function(length){
+    length = length || 1;
+    var sentence = getGivenNumberOfElements('.', length)
+      .replace(/[^a-zA-Z\. ]/g, '');
+
+    return sentence + '.';
+  };
+
   var getWords = function(length){
+    length = length || 1;
+
     var word = getGivenNumberOfElements(' ', length)
       .replace(/[^a-zA-Z ]/g, '');
-    if (word.length < 4) {
+    while(word.length < 4) {
       word = getWords(1);
     }
 
@@ -40,12 +52,13 @@ module.exports = function(){
   };
 
   var getName = function(length) {
+    length = length || 2;
     var output = [];
     for (var i=0; i<length; i++){
       output.push(generateName());
     }
 
-    return output.join( );
+    return output.join(' ');
   };
   //
   // var getEmail = function(){
@@ -64,6 +77,7 @@ module.exports = function(){
   return {
     randomNumber: getRandomNumber,
     words: getWords,
-    name: getName
+    names: getName,
+    sentences: getSentences
   };
 }();
