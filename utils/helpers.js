@@ -60,19 +60,6 @@ module.exports = function(){
 
     return output.join(' ');
   };
-  //
-  // var getEmail = function(){
-  //   return getString() + '@' + getString() + '.com';
-  // };
-  //
-  // var getPhone = function(){
-  //   var output = '+';
-  //   for (var i=0; i<10; i++) {
-  //     output += ~~(Math.random()*9);
-  //   }
-  //
-  //   return output;
-  // };
 
   return {
     randomNumber: getRandomNumber,
