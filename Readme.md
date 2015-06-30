@@ -35,5 +35,5 @@ Supported data types:
 ## Usage
 ```bash
 npm i amock -g
-amock path-to-file-with-mock-description.json [number of elements, optional]
+amock path-to-file-with-mock-description.json [number of elements, optional] > output
 ```
