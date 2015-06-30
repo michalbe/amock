@@ -5,7 +5,8 @@ var amock = require('../');
 
 // test 1
 amock('users', {
-  id: 'number:0-',
+  id: 'id',
+  age: 'random-number:10-20',
   login: 'words:1',
   name: 'names:2',
   description: 'sentences:5'
