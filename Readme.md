@@ -6,19 +6,28 @@ Simplest data mock generator evaaaah.
 var amock = require('amock');
 
 amock('cities', {
-  id: "number:0-",
-  name: "words:1"
+  id: "id",
+  name: "names:1"
 });
 
 amock('products', {
-  id: "number:0-",
-  cityId: "random-number:0-5",
+  id: "id",
   name: "words:1",
   description: "sentences:5",
   price: "random-number:9-100",
   image: "image:500/500"
 });
 
-amock.get(); // all the data
+amock.get(); // TODO: concatenate the data, now it returns first data type only
 amock.get('products', 100) // array of 100 products
+```
+
+Supported data types:
+```javascript
+ 'id' // autoincremented number, no argument
+ 'words' // string, number of words as an argument
+ 'names' // capitalized string, number of names as an argument
+ 'sentences' // full sentence, number of sentences as an argument
+ 'random-number' // random number, range as an argument (min-max)
+ 'image' // link to the random image, resolution as an argument (width/height)
 ```
