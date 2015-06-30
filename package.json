@@ -8,6 +8,9 @@
     "jshint": "^2.8.0",
     "precommit-hook": "^3.0.0"
   },
+  "bin": {
+    "amock": "./bin/cmd.js"
+  },
   "scripts": {
     "test": "node tests/amock-tests.js",
     "lint": "node node_modules/jshint/bin/jshint ."
