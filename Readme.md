@@ -18,4 +18,7 @@ amock('products', {
   price: "random-number:9-100",
   image: "image:500/500"
 });
+
+amock.get(); // all the data
+amock.get('products', 100) // array of 100 products
 ```
