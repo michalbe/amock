@@ -14,38 +14,58 @@ module.exports = (function(){
   var mocks = {};
   var id = 0;
   var init = function(name, schema){
-    mocks[name] = schema;
+    var parsedSchema = {};
+    for (var key in schema) {
+      parsedSchema = parseElement(schema[key]);
+    }
+
+    mocks[name] = parsedSchema;
   };
 
   var parseElement = function(element) {
     var args = element.split(':');
     var name = args[0];
     args = args[1];
-    
+
     if (name in specialActions) {
-      return specialActions[name](args);
+      return {
+        fn: specialActions[name],
+        args: args
+      };
     } else if (name in helpers){
-      return helpers[name](args);
+      return {
+        fn: helpers[name],
+        args: args
+      };
     } else {
-      return name;
+      var fn = function(name){ return function(){ return name; }; }(name);
+      return {
+        fn: fn,
+        args: args
+      };
     }
   };
 
-  init.get = function(){
-    return 'hej';
+  init.get = function(name, quantity) {
+    if (typeof name === 'number') {
+      quantity = name;
+      name = Object.keys(mocks)[0];
+    } else {
+      name = name || Object.keys(mocks)[0];
+      quantity = quantity || 20;
+    }
+
   };
 
-//  return init;
+  return init;
+  //
+  // var e = {
+  //   id: 'id',
+  //   age: 'random-number:10-20',
+  //   login: 'words:1',
+  //   name: 'names:2',
+  //   description: 'sentences:5'
+  // };
 
-var e = {
-  id: 'id',
-  age: 'random-number:10-20',
-  login: 'words:1',
-  name: 'names:2',
-  description: 'sentences:5'
-};
 
-for (var key in e) {
-  console.log(key, ': ', parseElement(e[key]));
-}
 })();
