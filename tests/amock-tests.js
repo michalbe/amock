@@ -14,25 +14,37 @@ amock('users', {
 
 // general tests
 var result = amock.get(5);
-assert.equal(result.length, 5);
-assert.equal(typeof result[0], 'object');
+assert.equal(result.length, 5, 'five results should be generated');
+assert.equal(typeof result[0], 'object', 'each result should be an object');
 
 // id tests
-assert.equal(typeof result[0].id, 'number');
-assert.equal(result[0].id+1,  result[1].id);
+assert.equal(typeof result[0].id, 'number', 'id should have number type');
+assert.equal(result[0].id+1,  result[1].id, 'id should be unique');
 
 // random numbers tests
-assert.equal(typeof result[0].age, 'number');
-assert(result[0].age >= 10);
-assert(result[0].age <= 20);
+assert.equal(typeof result[0].age, 'number',
+  'random number should have number type'
+);
+assert(result[0].age >= 10,
+  'random number value should be higher than minimum value'
+);
+assert(result[0].age <= 20,
+  'random number value should be lower than maximum value'
+);
 
 // words
-assert.equal(typeof result[0].login, 'string');
+assert.equal(typeof result[0].login, 'string', 'word should have string type');
 
 // name
-assert.equal(typeof result[0].name, 'string');
-assert.equal(result[0].name.split(' ').length, 2);
+assert.equal(typeof result[0].name, 'string', 'name should have string type');
+assert.equal(result[0].name.split(' ').length, 2,
+  'proper number of names should be generated'
+);
 
 // sentences
-assert.equal(typeof result[0].description, 'string');
-assert.equal(result[0].description.split('.').length, 5+1);
+assert.equal(typeof result[0].description, 'string',
+  'sentence should have string type'
+);
+assert.equal(result[0].description.split('.').length, 5+1,
+  'propr number of sentences should be generated'
+);

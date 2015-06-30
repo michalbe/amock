@@ -73,5 +73,6 @@ module.exports = (function(){
   init.getParsed = function(name, quantity) {
     return JSON.stringify(init.get(name, quantity), null, 2);
   };
+
   return init;
 })();
