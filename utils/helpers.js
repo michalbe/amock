@@ -13,7 +13,10 @@ module.exports = function(){
   var getRandomNumber = function(range) {
     range = range.split('-');
     var min = range[0] || 0;
+    min = parseInt(min, 10);
     var max = range[1] || 10;
+    max = parseInt(max, 10);
+    
     return min + ~~(Math.random()*(max-min+1));
   };
 
