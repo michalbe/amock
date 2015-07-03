@@ -57,5 +57,8 @@ assert.equal(result[0].description.split('.').length, 5+1,
 
 // random sequence
 assert.equal(typeof result[0].code, 'string',
-  'proper number of `sentences` should be generated'
+  'generated sequence element should have proper type'
+);
+assert(codes.indexOf(result[0].code) > -1,
+  'generated sequence element should be in the description'
 );
