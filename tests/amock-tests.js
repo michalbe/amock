@@ -3,13 +3,15 @@
 var assert = require('assert');
 var amock = require('../');
 
-// test 1
+var codes = ['en-US', 'PL', 'fr', 'de'];
+
 amock('users', {
   id: 'id',
   age: 'random-number:10-20',
   login: 'words:1',
   name: 'names:2',
-  description: 'sentences:5'
+  description: 'sentences:5',
+  code: 'random:' + JSON.stringify(codes)
 });
 
 // general tests
@@ -50,5 +52,10 @@ assert.equal(typeof result[0].description, 'string',
   '`sentence` should have `string` type'
 );
 assert.equal(result[0].description.split('.').length, 5+1,
+  'proper number of `sentences` should be generated'
+);
+
+// random sequence
+assert.equal(typeof result[0].code, 'string',
   'proper number of `sentences` should be generated'
 );
