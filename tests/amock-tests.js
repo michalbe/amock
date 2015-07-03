@@ -70,3 +70,9 @@ assert(codes.indexOf(result[0].code) > -1,
 assert.equal(typeof result[0].seq, 'string',
   'generated sequence element should have proper type'
 );
+
+for (var i=0; i<result.length; i++) {
+  assert.equal(result[i].seq, letters[i%letters.length],
+    'ordered sequence elements should have proper order hue hue'
+  );
+}
