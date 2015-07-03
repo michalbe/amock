@@ -4,6 +4,7 @@ var assert = require('assert');
 var amock = require('../');
 
 var codes = ['en-US', 'PL', 'fr', 'de'];
+var letters = ['a', 'b', 'c'];
 
 amock('users', {
   id: 'id',
@@ -11,11 +12,13 @@ amock('users', {
   login: 'words:1',
   name: 'names:2',
   description: 'sentences:5',
-  code: 'random:' + JSON.stringify(codes)
+  code: 'random:' + JSON.stringify(codes),
+  seq: 'sequence:' + JSON.stringify(letters),
 });
 
 // general tests
 var result = amock.get(5);
+
 assert.equal(result.length, 5, 'five results should be generated');
 assert.equal(typeof result[0], 'object', 'each result should be an object');
 
@@ -61,4 +64,9 @@ assert.equal(typeof result[0].code, 'string',
 );
 assert(codes.indexOf(result[0].code) > -1,
   'generated sequence element should be in the description'
+);
+
+// ordered sequence
+assert.equal(typeof result[0].seq, 'string',
+  'generated sequence element should have proper type'
 );
