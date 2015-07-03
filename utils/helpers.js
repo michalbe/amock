@@ -16,7 +16,7 @@ module.exports = function(){
     min = parseInt(min, 10);
     var max = range[1] || 10;
     max = parseInt(max, 10);
-    
+
     return min + ~~(Math.random()*(max-min+1));
   };
 
@@ -65,8 +65,26 @@ module.exports = function(){
     return output.join(' ');
   };
 
+  var getRandom = function(data){
+    data = JSON.parse(data);
+    return data.sort(function(){
+      return 0.5 - Math.random();
+    }).pop();
+  };
+
+  var getSequence = function() {
+    var counts = {};
+    return function(data) {
+      counts[data] = counts[data] || 0;
+      var parsedData = JSON.parse(data);
+      return parsedData[counts[data]++%parsedData.length];
+    };
+  }();
+
   return {
     'random-number': getRandomNumber,
+    random: getRandom,
+    sequence: getSequence,
     words: getWords,
     names: getName,
     sentences: getSentences

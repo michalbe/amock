@@ -3,17 +3,22 @@
 var assert = require('assert');
 var amock = require('../');
 
-// test 1
+var codes = ['en-US', 'PL', 'fr', 'de'];
+var letters = ['a', 'b', 'c'];
+
 amock('users', {
   id: 'id',
   age: 'random-number:10-20',
   login: 'words:1',
   name: 'names:2',
-  description: 'sentences:5'
+  description: 'sentences:5',
+  code: 'random:' + JSON.stringify(codes),
+  seq: 'sequence:' + JSON.stringify(letters),
 });
 
 // general tests
 var result = amock.get(5);
+
 assert.equal(result.length, 5, 'five results should be generated');
 assert.equal(typeof result[0], 'object', 'each result should be an object');
 
@@ -52,3 +57,22 @@ assert.equal(typeof result[0].description, 'string',
 assert.equal(result[0].description.split('.').length, 5+1,
   'proper number of `sentences` should be generated'
 );
+
+// random sequence
+assert.equal(typeof result[0].code, 'string',
+  'generated sequence element should have proper type'
+);
+assert(codes.indexOf(result[0].code) > -1,
+  'generated sequence element should be in the description'
+);
+
+// ordered sequence
+assert.equal(typeof result[0].seq, 'string',
+  'generated sequence element should have proper type'
+);
+
+for (var i=0; i<result.length; i++) {
+  assert.equal(result[i].seq, letters[i%letters.length],
+    'ordered sequence elements should have proper order hue hue'
+  );
+}
