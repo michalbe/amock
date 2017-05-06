@@ -24,6 +24,14 @@ module.exports = (function() {
 
   var parseElement = function(element) {
 
+    if (typeof element === 'object') {
+      var parsedSubschema = {};
+      for (var key in element) {
+        parsedSubschema[key] = parseElement(element[key]);
+      }
+      return parsedSubschema;
+    }
+
     var args = element.split(':');
     var name = args[0];
     args = args[1];
@@ -68,7 +76,14 @@ module.exports = (function() {
 
       singleObject = {};
       for (var key in schema) {
-        singleObject[key] = schema[key].fn(schema[key].args);
+        if (!schema[key].fn) {
+          singleObject[key] = {};
+          for (var key2 in schema[key]) {
+            singleObject[key][key2] = schema[key][key2].fn(schema[key][key2].args);
+          }
+        } else {
+          singleObject[key] = schema[key].fn(schema[key].args);
+        }
       }
 
       output.push(singleObject);
