@@ -19,6 +19,15 @@ amock('products', {
   language: "random:['en-US', 'pl', 'de', 'fr']"
 });
 
+amock('movies', {
+  id: "id",
+  title: "names:1"
+  director: { // nested objects allowed since amock0.9
+    name: "names:2",
+    age: "random-numbers:20-65"
+  }
+});
+
 amock.get(); // TODO: concatenate the data, now it returns first data type only
 amock.get('products', 100) // array of 100 products
 ```
