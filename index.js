@@ -1,19 +1,19 @@
-module.exports = (function(){
+module.exports = (function() {
   'use strict';
   var helpers = require('./utils/helpers');
 
   var specialActions = {
-    image: function(res){
+    image: function(res) {
       return 'http://lorempixel.com/' + res + '?' + ~~(Math.random()*999999);
     },
-    id: function(){
+    id: function() {
       return id++;
     }
   };
 
   var mocks = {};
   var id = 0;
-  var init = function(name, schema){
+  var init = function(name, schema) {
     var parsedSchema = {};
     for (var key in schema) {
       parsedSchema[key] = parseElement(schema[key]);
@@ -23,6 +23,7 @@ module.exports = (function(){
   };
 
   var parseElement = function(element) {
+
     var args = element.split(':');
     var name = args[0];
     args = args[1];
@@ -32,13 +33,13 @@ module.exports = (function(){
         fn: specialActions[name],
         args: args
       };
-    } else if (name in helpers){
+    } else if (name in helpers) {
       return {
         fn: helpers[name],
         args: args
       };
     } else {
-      var fn = function(name){ return function(){ return name; }; }(name);
+      var fn = function(name) { return function() { return name; }; }(name);
       return {
         fn: fn,
         args: args
@@ -48,23 +49,28 @@ module.exports = (function(){
 
   init.get = function(name, quantity) {
     if (typeof name === 'number') {
+
       quantity = name;
       name = Object.keys(mocks)[0];
+
     } else {
+
       name = name || Object.keys(mocks)[0];
       quantity = quantity || 20;
-    }
 
+    }
 
     var output = [];
     var singleObject = {};
     var schema = mocks[name];
 
     while(quantity--) {
+
       singleObject = {};
       for (var key in schema) {
         singleObject[key] = schema[key].fn(schema[key].args);
       }
+
       output.push(singleObject);
     }
 
