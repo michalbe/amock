@@ -14,6 +14,10 @@ amock('users', {
   description: 'sentences:5',
   code: 'random:' + JSON.stringify(codes),
   seq: 'sequence:' + JSON.stringify(letters),
+  author: {
+    age: 'random-number:20-65',
+    name: 'names:2'
+  }
 });
 
 // general tests
