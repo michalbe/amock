@@ -11,7 +11,7 @@
 #reponame="reponame"
 
 # Do we want to push to the temporary branch?
-#pushtotemp=1
+pushtotemp=0
 
 # After pushing to the repo, what branch needs to be compared?
 #comparewith="branch to compare"
