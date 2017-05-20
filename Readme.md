@@ -12,6 +12,7 @@ amock('cities', {
 
 amock('products', {
   id: "id",
+  date_of_birth: "date",
   name: "words:1",
   description: "sentences:5",
   price: "random-number:9-100",
@@ -35,6 +36,7 @@ amock.get('products', 100) // array of 100 products
 Supported data types:
 ```javascript
  'id' // autoincremented number, no argument
+ 'date' // random date from 1970-01-01 till now
  'words' // string, number of words as an argument
  'names' // capitalized string, number of names as an argument
  'sentences' // full sentence, number of sentences as an argument
