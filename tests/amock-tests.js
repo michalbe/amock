@@ -17,11 +17,14 @@ amock('users', {
   author: {
     age: 'random-number:20-65',
     name: 'names:2'
-  }
+  },
+  date_of_birth: "date"
 });
+
 
 // general tests
 var result = amock.get(5);
+console.log(result);
 
 assert.equal(result.length, 5, 'five results should be generated');
 assert.equal(typeof result[0], 'object', 'each result should be an object');
