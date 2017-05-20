@@ -1,6 +1,6 @@
 {
   "name": "amock",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "author": "Michał Budzyński <michal@virtualdesign.pl>",
   "repository": "git@github.com:michalbe/amock.git",
   "devDependencies": {
