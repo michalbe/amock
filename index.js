@@ -8,6 +8,9 @@ module.exports = (function() {
     },
     id: function() {
       return id++;
+    },
+    date: function() {
+      return new Date(Math.random() * (new Date()).getTime());
     }
   };
 
